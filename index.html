@@ -4,114 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Lucie Ascenzio de Esteve - Data Ingénieur</title>
+    
+    <!-- Import des icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Import de Leaflet (pour la carte SIG) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         :root {
             --primary-color: #7CB342; /* Vert pomme élégant */
+            --primary-dark: #689f38;
             --text-color: #333;
-            --bg-color: #f4f7f6;
+            --bg-color: #eef2f3;
             --white: #ffffff;
         }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
+            padding: 20px 0;
             line-height: 1.6;
         }
+        
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
+            max-width: 1050px;
+            margin: 0 auto;
             background: var(--white);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             display: flex;
             flex-wrap: wrap;
+            border-radius: 10px;
+            overflow: hidden;
         }
+        
         .header {
             width: 100%;
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             color: var(--white);
-            padding: 30px 40px;
+            padding: 40px;
             text-align: center;
+            border-bottom: 5px solid #558b2f;
         }
+        
         .header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.8em;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
+        
         .header h2 {
-            margin: 10px 0 0;
-            font-weight: 300;
+            margin: 15px 0 0;
+            font-weight: 400;
             font-size: 1.5em;
+            letter-spacing: 1px;
+            opacity: 0.9;
         }
+        
         .left-column {
             width: 35%;
-            background: #f9f9f9;
-            padding: 30px;
+            background: #fafafa;
+            padding: 35px;
             box-sizing: border-box;
+            border-right: 1px solid #eee;
         }
+        
         .right-column {
             width: 65%;
-            padding: 30px;
+            padding: 35px;
             box-sizing: border-box;
         }
+        
         h3 {
-            color: var(--primary-color);
+            color: var(--primary-dark);
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
+            padding-bottom: 8px;
             margin-top: 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
         .section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
+        
         .job-title {
             font-weight: bold;
-            font-size: 1.1em;
-            color: #222;
+            font-size: 1.15em;
+            color: #2c3e50;
+            margin-top: 15px;
         }
+        
         .job-date {
             font-style: italic;
-            color: #666;
-            margin-bottom: 10px;
+            color: #7f8c8d;
+            margin-bottom: 12px;
             font-size: 0.9em;
         }
+        
         ul {
             padding-left: 20px;
             margin-top: 5px;
         }
+        
         li {
             margin-bottom: 8px;
+            text-align: justify;
         }
+        
         .skills-list {
             list-style: none;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
+        
         .skills-list li {
+            background: var(--white);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary-color);
+            padding: 6px 12px;
+            margin: 0;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        .skills-list li:hover {
             background: var(--primary-color);
             color: var(--white);
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 0 5px 5px 0;
-            border-radius: 3px;
-            font-size: 0.9em;
-            font-weight: bold;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(124, 179, 66, 0.3);
         }
+        
+        /* Style de la carte SIG */
+        #map {
+            height: 220px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #ddd;
+            z-index: 1;
+        }
+        
         .footer {
             width: 100%;
-            background: #333;
+            background: #2c3e50;
             color: var(--white);
             text-align: center;
-            padding: 20px;
-            font-size: 0.95em;
+            padding: 25px;
+            font-size: 1em;
         }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
         .footer a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
+        
         .footer a:hover {
+            color: #aed581;
             text-decoration: underline;
+        }
+        
+        .contact-icons i {
+            margin-right: 8px;
+            color: var(--primary-color);
         }
     </style>
 </head>
@@ -120,41 +192,48 @@
 <div class="container">
     <div class="header">
         <h1>Lucie Ascenzio de Esteve</h1>
-        <h2>Data Ingénieur</h2>
+        <h2><i class="fas fa-database"></i> Data Ingénieur & Architecte SI</h2>
     </div>
 
     <div class="left-column">
         <div class="section">
-            <h3>Profil</h3>
+            <h3><i class="fas fa-user-astronaut"></i> Profil</h3>
             <p>Data Ingénieur hybride avec une forte appétence pour l'architecture des données, l'automatisation et l'ingénierie logicielle. Axée sur le cycle court pour transformer rapidement des besoins métiers complexes en solutions robustes et sécurisées.</p>
         </div>
 
         <div class="section">
-            <h3>Compétences</h3>
+            <h3><i class="fas fa-code"></i> Compétences</h3>
             <ul class="skills-list">
                 <li>Python / FastAPI</li>
                 <li>SQL / PostgreSQL</li>
-                <li>Docker / Docker Compose</li>
+                <li>Docker / Compose</li>
                 <li>Apache Airflow</li>
                 <li>Terraform / Ansible</li>
                 <li>AWS / GCP / Neon DB</li>
-                <li>ArcPy / SIG</li>
+                <li>ArcPy / SIG / Leaflet</li>
                 <li>JavaScript / Vanilla JS</li>
             </ul>
         </div>
 
         <div class="section">
-            <h3>Formation</h3>
+            <h3><i class="fas fa-graduation-cap"></i> Formation</h3>
             <p><strong>Diplôme Data Engineer</strong><br>
             DataScientest (En cours)</p>
-            <p><strong>Titre RNCP Concepteur Développeur d'Application</strong><br>
-            </p>
+            <p><strong>Titre RNCP Concepteur Développeur d'Applications</strong><br>
+            Validé devant un jury de professionnels</p>
+        </div>
+        
+        <div class="section">
+            <h3><i class="fas fa-map-marked-alt"></i> Localisation</h3>
+            <p style="font-size: 0.9em; margin-bottom: 5px;">📍 Basée à Paris 13e - Mobilité IDF</p>
+            <!-- Conteneur de la carte Leaflet -->
+            <div id="map"></div>
         </div>
     </div>
 
     <div class="right-column">
         <div class="section">
-            <h3>Expériences Professionnelles</h3>
+            <h3><i class="fas fa-briefcase"></i> Expériences Professionnelles</h3>
             
             <div class="job-title">Data Ingénieur (Alternance) - Ville de Paris</div>
             <div class="job-date">Décembre 2024 - Novembre 2026</div>
@@ -162,15 +241,15 @@
                 <li>Développement et automatisation en méthode agile (cycles courts).</li>
                 <li>Déploiement d'un pipeline d'ingestion en quasi temps réel alimentant une base Neon PostgreSQL (Projet fil rouge).</li>
                 <li>Création d'un script Python (ArcPy), réduisant un temps de traitement spatial de 2 heures à moins de 2 minutes.</li>
-                <li>Développement d'un Dashboard autour des volumes bâtis parisiens hébergé sur GitHub pour visualiser des indicateurs clés (A partir de l'Open Data).</li>
-                <li>Élaboration et animation d'une formation technique (2h) sur la data ingénierie avec mise en place d'un TP via GitHub Actions pour les collègues participants.</li>
+                <li>Développement d'un Dashboard autour des volumes bâtis parisiens hébergé sur GitHub pour visualiser des indicateurs clés (À partir de l'Open Data).</li>
+                <li>Élaboration et animation d'une formation technique (2h) sur la Data Ingénierie avec mise en place d'un TP via GitHub Actions pour les collègues participants.</li>
             </ul>
 
             <div class="job-title">Projets Data & DevOps</div>
             <div class="job-date">Projets d'Architecture Récents</div>
             <ul>
                 <li><strong>Architecture Medallion & ML (DST Airlines) :</strong> Ingestion de données de vols via API (OpenSky, ADSB.lol), stockage Parquet sur GCP Cloud Storage et alimentation d'un modèle de Machine Learning pour la prédiction des retards.</li>
-                <li><strong>Infrastructure as Code (IaC) :</strong> Provisionnement d'infrastructures AWS (VPC, EC2, RDS) via Terraform et configuration multi-noeuds automatisée avec des playbooks Ansible.</li>
+                <li><strong>Infrastructure as Code (IaC) :</strong> Provisionnement d'infrastructures AWS (VPC, EC2, RDS) via Terraform et configuration multi-nœuds automatisée avec des playbooks Ansible.</li>
                 <li><strong>Parseur de messagerie :</strong> Développement d'une webapp client-side (Vanilla JS, IndexedDB) pour le rendu local d'archives .eml.</li>
             </ul>
 
@@ -183,10 +262,34 @@
     </div>
 
     <div class="footer">
-        <p>📍 Paris 13e Arrondissement | 💼 GitHub : <a href="https://github.com/ASCENZIODEESTEVELucie" target="_blank">ASCENZIODEESTEVELucie</a></p>
-        <p><i>Orfèvrerie logicielle au service des directions métiers</i></p>
+        <p class="contact-icons">
+            <i class="fas fa-map-marker-alt"></i> Paris 13e Arrondissement &nbsp;|&nbsp; 
+            <i class="fab fa-github"></i> GitHub : <a href="https://github.com/ASCENZIODEESTEVELucie" target="_blank">ASCENZIODEESTEVELucie</a>
+        </p>
+        <p style="margin-top: 10px; color: #aed581;"><i>"Orfèvrerie logicielle au service des directions métiers"</i></p>
     </div>
 </div>
+
+<!-- Script d'initialisation de la carte Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialisation de la carte centrée sur Paris 13e
+        var map = L.map('map', {
+            zoomControl: false // Désactive les boutons +/- pour plus d'élégance sur un CV
+        }).setView([48.833, 2.363], 13);
+        
+        // Ajout d'un fond de carte "CartoDB Positron" (clair et pro)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Ajout d'un marqueur personnalisé
+        var marker = L.marker([48.833, 2.363]).addTo(map);
+        marker.bindPopup("<b>Paris 13e</b><br>Prête à relever de nouveaux défis Data !");
+    });
+</script>
 
 </body>
 </html>
