@@ -6,232 +6,313 @@
     <title>CV - Lucie Ascenzio de Esteve</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #18bc9c;
-            --text-color: #333;
-            --bg-color: #f4f4f9;
-            --sidebar-text: #ecf0f1;
+            --bg-tint: #eef3ec;
+            --text-main: #3d4543;
+            --accent-color: #6d8076;
+            --border-color: #d1d9d4;
         }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: var(--bg-color); 
-            color: var(--text-color); 
-            line-height: 1.5;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: var(--text-main);
+            line-height: 1.4;
+            font-size: 13px;
         }
-        .container { 
-            max-width: 1100px; 
-            margin: 30px auto; 
-            background: #fff; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-            display: flex; 
-            border-radius: 8px;
-            overflow: hidden;
+
+        .cv-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .sidebar { 
-            background: var(--primary-color); 
-            color: var(--sidebar-text); 
-            width: 32%; 
-            padding: 30px; 
+
+        header {
+            background-color: var(--bg-tint);
+            padding: 25px 40px;
+            margin-bottom: 25px;
         }
-        .sidebar h2, .sidebar h3 { 
-            color: var(--secondary-color); 
-            border-bottom: 2px solid var(--secondary-color); 
-            padding-bottom: 5px; 
-            font-size: 1.2em;
+        header h1 {
+            margin: 0 0 5px 0;
+            font-size: 2.2em;
+            color: #2c3532;
+            font-weight: 600;
+        }
+        header p.subtitles {
+            margin: 0;
+            color: var(--accent-color);
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .cv-body {
+            display: flex;
+            padding: 0 40px;
+            gap: 40px;
+        }
+
+        .left-column {
+            width: 32%;
+        }
+
+        .right-column {
+            width: 68%;
+        }
+
+        .section-title {
+            color: var(--accent-color);
+            font-size: 1.1em;
+            font-weight: 600;
             text-transform: uppercase;
-            margin-top: 30px;
-        }
-        .sidebar h3:first-of-type {
+            letter-spacing: 1px;
             margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
-        .sidebar a {
-            color: var(--sidebar-text);
-            text-decoration: none;
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 3px;
+            height: 14px;
+            background-color: var(--accent-color);
+            margin-right: 8px;
         }
-        .sidebar a:hover {
-            color: var(--secondary-color);
+        
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 20px 0;
         }
-        .main-content { 
-            width: 68%; 
-            padding: 40px; 
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
-        .main-content h1 { 
-            color: var(--primary-color); 
-            font-size: 2.8em; 
-            margin-bottom: 5px; 
+        .bullet-list li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 8px;
+        }
+        .bullet-list li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: var(--text-main);
+        }
+        p {
             margin-top: 0;
+            margin-bottom: 10px;
+            text-align: justify;
         }
-        .main-content h2.job-title { 
-            color: var(--secondary-color); 
-            font-size: 1.5em; 
-            margin-top: 0; 
-            font-weight: 600;
+        strong {
+            color: #2c3532;
         }
-        .section-title { 
-            color: var(--primary-color); 
-            border-bottom: 2px solid var(--primary-color); 
-            padding-bottom: 5px; 
-            margin-top: 30px; 
-            text-transform: uppercase; 
-            font-size: 1.4em;
+
+        .left-column h4 {
+            margin: 0 0 2px 0;
+            font-size: 1em;
+            color: #2c3532;
         }
-        ul { 
-            list-style-type: none; 
-            padding: 0; 
+        .left-column p.sub {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 15px;
         }
-        ul.contact-info li { 
-            margin-bottom: 12px; 
-            font-size: 0.95em;
+
+        .tinted-box {
+            background-color: var(--bg-tint);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
         }
-        .map-container { 
-            margin-top: 15px; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            border: 1px solid #34495e;
-        }
-        .job { 
-            margin-bottom: 25px; 
-        }
-        .job h3 { 
-            margin-bottom: 5px; 
-            color: #2980b9; 
-            font-size: 1.15em;
-        }
-        .job p.date { 
-            font-style: italic; 
-            color: #7f8c8d; 
-            margin-top: 0; 
-            font-size: 0.95em;
-            font-weight: 600;
-        }
-        .job ul { 
-            padding-left: 20px; 
-            list-style-type: disc; 
-        }
-        .job ul li { 
-            margin-bottom: 8px; 
-            font-size: 0.95em;
-        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
-        .skill-category h4 {
-            color: #2980b9;
-            margin-bottom: 8px;
+        .skills-category h5 {
+            margin: 0 0 5px 0;
             font-size: 1em;
+            color: var(--accent-color);
         }
-        .skill-category p {
-            margin-top: 0;
+        .skills-category p {
+            margin-bottom: 0;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+            border: 1px solid #c9d4ce;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+        .job-header h4 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #2c3532;
+        }
+        .job-header span.date {
+            color: var(--accent-color);
+            font-size: 0.9em;
+        }
+        .job-subtitle {
+            color: #777;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: var(--bg-tint);
+            padding: 15px 40px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
             font-size: 0.95em;
-            color: #555;
+            color: var(--accent-color);
+        }
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- BARRE LATÉRALE -->
-        <div class="sidebar">
-            <h3>CONTACT</h3>
-            <ul class="contact-info">
-                <li>📍 Paris, Île-de-France<br>(13e arrondissement)</li>
-                <li>📧 ascenziodeestevelucie@gmail.com</li>
-                <li>🔗 <a href="https://github.com/ASCENZIODEESTEVELucie" target="_blank">GitHub : ASCENZIODEESTEVELucie</a></li>
-            </ul>
-            
-            <!-- Carte OpenStreetMap centrée sur Place d'Italie -->
-            <div class="map-container">
-                <iframe width="100%" height="160" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.3486%2C48.8285%2C2.3614%2C48.8354&amp;layer=mapnik&amp;marker=48.8315%2C2.3555"></iframe>
-            </div>
-            
-            <h3>PROFIL</h3>
-            <p style="font-size: 0.95em;">Data Engineer spécialisée dans la transformation de besoins métiers en solutions concrètes déployées en production. Apprentie 2 ans au sein de la Direction de l'Urbanisme de la Ville de Paris, j'ai développé une aisance pour la mise en place de divers ETL/ELT. Je combine développement full-stack (Java, Python, PowerShell), pilotage de projets transverses et forte culture de la preuve de valeur. Parcours transversal dev data/IA × SIG × cybersécurité.</p>
-
-            <h3>FORMATION</h3>
-            <ul style="font-size: 0.95em;">
-                <li><strong>Data Engineer - (RNCP Niv. 7)</strong><br>DataScientest | 2024 - 2026<br><em>RNCP38919 - Bac+5</em></li><br>
-                <li><strong>POEC - Analyste SOC</strong><br>M21 | 2023<br><em>MITRE ATT&CK, Wireshark, Splunk, Red Teaming, analyse de menaces.</em></li><br>
-                <li><strong>Conceptrice Dév. App - (RNCP Niv. 6)</strong><br>AFPA | 2021 - 2022<br><em>Fullstack Java (desktop + web), BDD relationnelle, UML MVC.</em></li>
-            </ul>
-
-            <h3>SOFT SKILLS</h3>
-            <ul style="font-size: 0.95em;">
-                <li><strong>Autonomie & Initiative :</strong> Projets lancés sans sollicitation, déployés en production.</li>
-                <li><strong>Raisonnement diagnostique :</strong> Résolution de contraintes complexes (legacy, 32/64 bits).</li>
-                <li><strong>Leadership silencieux :</strong> Gestion de projets collectifs en autonomie totale.</li>
-                <li><strong>Communication multi-niveaux :</strong> Vulgarisation pour les non-techniques, rigueur pour les experts, formation agents métiers.</li>
-                <li><strong>Vision système :</strong> Conception end-to-end du cycle de vie complet.</li>
-                <li><strong>Rigueur documentaire :</strong> Documentation technique formelle et recommandations stratégiques.</li>
-            </ul>
-            
-            <h3>INTÉRÊTS</h3>
-            <p style="font-size: 0.95em;">Narration interactive & Game Design<br>Jeux Vidéos × Mangas<br>CIFRE : NLP Unreal Engine</p>
-        </div>
+    <div class="cv-container">
         
-        <!-- CONTENU PRINCIPAL -->
-        <div class="main-content">
+        <header>
             <h1>Lucie Ascenzio de Esteve</h1>
-            <h2 class="job-title">Data Ingénieur</h2>
+            <p class="subtitles">Data Engineer · Cheffe de Projet Data/IA · Conceptrice Développeuse d'Applications · Analyste SOC</p>
+        </header>
+
+        <div class="cv-body">
             
-            <h2 class="section-title">Expériences Professionnelles</h2>
-            
-            <div class="job">
-                <h3>Data Engineer (Pilotage & Prototypage)</h3>
-                <p class="date">Ville de Paris - Direction de l'Urbanisme Bureau Topo (SIG) | 2024 - nov. 2026</p>
-                <p style="font-size: 0.95em; font-weight: bold; margin-bottom: 5px;">Solutions Data déployées en production - cycles courts :</p>
-                <ul>
-                    <li><strong>Moteur d'archivage emails (.msg) :</strong> PowerShell + COM Object. Parsing HTML, gestions des pièces jointes/images, Fail-Safe chemins >240 chars, Nettoyage Regex. Réalisé suite à la migration vers la Web App Outlook, consulter des archives .msg était compliqué pour les agents.</li>
-                    <li><strong>ETL/Dashboard Parc Informatique :</strong> Agent WMI distribué (logique Upsert), pipeline Regex + déduplication temporelle, dashboard JS Vanilla sans BDD ni framework. Remplace les fichiers Excel manuels.</li>
-                    <li><strong>Pipeline hybride Java/PowerShell :</strong> Architecture WOW64, UCanAccess JDBC, traces des MAJ en BDD et SHA256 pour vérifier l'intégrité des logs.</li>
-                    <li><strong>LIDAR Intersection Tool (ArcMAP/ArcGIS Pro) :</strong> Outil Python/ArcPy automatisant l'extraction de nuages de points via intersection d'un grillage contenant des métadonnées métier. Développé suite à une expression de besoin, utilisé par les topographes pour études historique du bâti.</li>
-                    <li><strong>WatcherVersErgo :</strong> Monitoring .NET FileSystemWatcher sur un dossier d'intérêt. Listing à chaque événement important pour facilité la poussée des volumes bâtis en base de données.</li>
-                    <li><strong>Audit SIG STAR (RHEL 6.3 / Oracle 11g) :</strong> Scripts Bash forensiques sur 30 ans de logs. Quantification d'usage et suggestion d'automatisation pour extraction de la donnée : note de recommandation stratégique.</li>
-                    <li><strong>DST Airlines - Fil rouge :</strong> OpenSky + Open-Meteo → PostgreSQL → Machine Learning pour la prédiction des retards → FastAPI → Docker Compose + Ansible. Pipeline data engineering end-to-end industrialisé.</li>
+            <div class="left-column">
+                <h2 class="section-title">PROFIL</h2>
+                <p>Data Engineer spécialisée dans la transformation de besoins métiers en solutions concrètes déployées en production. Apprentie 2 ans au sein de la Direction de l'Urbanisme de la Ville de Paris, j'ai développé une aisance pour la mise en place de divers ETL/ELT. Je combine développement, pilotage de projets transverses et forte culture de la preuve de valeur. Parcours transversal : dev × data/IA × SIG × cybersécurité.</p>
+
+                <div class="section-divider"></div>
+
+                <h2 class="section-title">FORMATION</h2>
+                <h4>Data Engineer - (RNCP Niv. 7)</h4>
+                <p class="sub">DataScientest · 2024 - 2026<br>RNCP38919 - Bac+5</p>
+
+                <h4>POEC - Analyste SOC</h4>
+                <p class="sub">M21 · 2023<br>Sensibilisation, analyse et défense.</p>
+
+                <h4>Conceptrice Dév. App - (RNCP Niv. 6)</h4>
+                <p class="sub">AFPA · 2021 - 2022<br>Développement applicatif et bases de données.</p>
+
+                <div class="section-divider"></div>
+
+                <h2 class="section-title">SOFT SKILLS</h2>
+                <p><strong>Autonomie & Initiative :</strong> Projets lancés sans sollicitation, déployés en production.</p>
+                <p><strong>Raisonnement diagnostique :</strong> Résolution de contraintes de systèmes anciens (legacy).</p>
+                <p><strong>Communication & Pédagogie :</strong> Animation de formations techniques pour les agents et la direction.</p>
+                <p><strong>Vision système :</strong> Conception de bout en bout du cycle de vie complet.</p>
+
+                <div class="section-divider"></div>
+
+                <h2 class="section-title">INTÉRÊTS</h2>
+                <ul class="bullet-list" style="margin-left: -12px;">
+                    <li>Narration interactive & Game Design</li>
+                    <li>Jeux Vidéo × Mangas</li>
+                    <li>CIFRE : NLP × Unreal Engine</li>
                 </ul>
             </div>
 
-            <div class="job">
-                <h3>Analyste SOC - Simulation Red Team</h3>
-                <p class="date">2023</p>
-                <ul>
-                    <li><strong>ProjetCyber :</strong> Red Team Caldera (T1020 exfiltration), détection Wireshark, Splunk Universal Forwarder. Rapport d'incident complet.</li>
-                </ul>
-            </div>
+            <div class="right-column">
+                
+                <h2 class="section-title">COMPÉTENCES TECHNIQUES</h2>
+                <div class="tinted-box skills-grid">
+                    <div class="skills-category">
+                        <h5>⚙️ Développement</h5>
+                        <p>Python · JavaScript (Vanilla)<br>Java · PowerShell · C# (.NET)<br>HTML/CSS · Git · GitHub</p>
+                    </div>
+                    <div class="skills-category">
+                        <h5>📊 Data & Cloud</h5>
+                        <p>GCP Cloud Storage · Parquet<br>IndexedDB · PostgreSQL<br>ETL/ELT · Machine Learning</p>
+                    </div>
+                    <div class="skills-category">
+                        <h5>🗺️ SIG & Legacy</h5>
+                        <p>ArcGIS Pro · ArcPy<br>Oracle SDE · Access<br>UCanAccess JDBC</p>
+                    </div>
+                    <div class="skills-category">
+                        <h5>🛡️ Cybersécurité (Acquis)</h5>
+                        <p>Caldera · MITRE ATT&CK<br>Wireshark · Splunk<br>Analyse SOC</p>
+                    </div>
+                </div>
 
-            <div class="job">
-                <h3>Conceptrice Développeuse d'Applications</h3>
-                <p class="date">2021 - 2022</p>
-                <ul>
-                    <li><strong>Site associatif fullstack Java :</strong> Architecture MVC/DAO, MySQL, réservations tarifées adhérents, admin multi-rôles, Google Maps, FullCalendar.</li>
-                    <li><strong>Site e-commerce LUOM (Java + HTML/CSS/JS) :</strong> Front-end + back-end complet, gestion stocks & promotions, admin multi-niveaux de privilèges.</li>
-                    <li><strong>Application desktop Alterwonderland (Java SWING) :</strong> Otomegame avec karma, sauvegarde de sessions, dialogues. Figma, Jmerise, Trello.</li>
-                    <li><strong>Maquette Ecomotors :</strong> UI/UX responsive (Style Tiles Photoshop, Wireframe, Zoning).</li>
+                <h2 class="section-title" style="margin-top: 25px;">EXPÉRIENCES PROFESSIONNELLES</h2>
+                
+                <div class="job-header">
+                    <h4>Data Engineer & Développeuse (Apprentissage)</h4>
+                    <span class="date">2024 - nov. 2026</span>
+                </div>
+                <p class="job-subtitle">Ville de Paris - Direction de l'Urbanisme</p>
+                
+                <div class="tinted-box" style="padding-bottom: 5px;">
+                    <p style="font-weight: 600; margin-bottom: 10px; color: var(--accent-color);">Développements récents en production :</p>
+                    <ul class="bullet-list">
+                        <li><strong>Optimisation des traitements SIG (Protégé à l'INPI) :</strong> Développement d'un script Python/ArcPy qui a réduit le temps de traitement des données spatiales de plus de 2 heures à moins de 2 minutes pour les agents de la ville.</li>
+                        <li><strong>Dashboard-VB :</strong> Création d'un tableau de bord interactif hébergé sur GitHub Pages pour la visualisation des données parcellaires extraites d'Oracle SDE.</li>
+                        <li><strong>Application Web d'archivage (.eml) :</strong> Développement d'une interface client (JavaScript Vanilla, IndexedDB) permettant de lire et d'organiser localement des archives d'emails depuis le navigateur.</li>
+                    </ul>
+                </div>
+                
+                <ul class="bullet-list" style="margin-bottom: 25px;">
+                    <li><strong>Formation technique interne :</strong> Conception et animation d'une session de 2 heures sur l'ingénierie logicielle et GitHub pour la direction et les collègues.</li>
+                    <li><strong>ETL/Dashboard Parc Informatique :</strong> Automatisation de la collecte des données matérielles avec un agent distribué et création d'un tableau de bord en JavaScript sans framework[span_0](start_span)[span_0](end_span).</li>
+                    <li><strong>Pipeline hybride & Traitement 3D :</strong> Mise en place d'une architecture sécurisée traçant les mises à jour en base de données[span_1](start_span)[span_1](end_span), et outil Python automatisant l'extraction de nuages de points (LIDAR)[span_2](start_span)[span_2](end_span).</li>
+                    <li><strong>Monitoring Serveur :</strong> Mise en place d'une surveillance automatisée (C# .NET) pour détecter et intégrer rapidement les nouveaux fichiers de plans en base[span_3](start_span)[span_3](end_span).</li>
                 </ul>
-            </div>
 
-            <h2 class="section-title">Compétences Techniques</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>Dev & Architecture</h4>
-                    <p>Python, Java EE, PowerShell, Bash<br>HTML/CSS, JavaScript (Vanilla)<br>FastAPI, JSP/JSTL, MVC DAO<br>Git, GitHub Actions, GitLab CI/CD<br>Docker, K8s (k3s), Ansible</p>
+                <div class="job-header">
+                    <h4>Data Engineer (Projet d'Études Capstone)</h4>
+                    <span class="date">2025 - 2026</span>
                 </div>
-                <div class="skill-category">
-                    <h4>Data/IA & Extraction</h4>
-                    <p>ETL/ELT<br>Modèles de prédictions, Réseaux de neurones<br>PostgreSQL, MySQL, MongoDB<br>Regex<br>Power BI, Matplotlib, DataViz</p>
+                <ul class="bullet-list" style="margin-bottom: 25px;">
+                    <li><strong>Pipeline Data (Ilovescrapy) :</strong> Conception d'une architecture Medallion complète ingérant des données de trafic aérien (APIs ADSB.lol et OpenSky). Stockage optimisé (fichiers Parquet sur GCP) et implémentation d'un modèle d'Intelligence Artificielle pour la prédiction des retards de vols.</li>
+                </ul>
+
+                <div class="job-header">
+                    <h4>Analyste SOC - Simulation Red Team</h4>
+                    <span class="date">2023</span>
                 </div>
-                <div class="skill-category">
-                    <h4>SIG & Patrimoine Legacy</h4>
-                    <p>ArcGIS Pro, ArcMap, ArcPy<br>Oracle 11g, RHEL 6.3<br>Access (.mdb/.accdb), UCanAccess<br>WOW64 JDBC, Jet/ACE OLE DB</p>
+                <ul class="bullet-list" style="margin-bottom: 25px;">
+                    <li><strong>ProjetCyber :</strong> Réalisation d'une simulation d'attaque, détection réseau et rédaction d'un rapport d'incident complet[span_4](start_span)[span_4](end_span).</li>
+                </ul>
+
+                <div class="job-header">
+                    <h4>Conceptrice Développeuse d'Applications</h4>
+                    <span class="date">2021 - 2022</span>
                 </div>
-                <div class="skill-category">
-                    <h4>Cybersécurité</h4>
-                    <p>Caldera, MITRE ATT&CK<br>Wireshark, Splunk<br>Red Teaming, Analyse SOC<br>Analyse réseau TCP/HTTP</p>
-                </div>
+                <ul class="bullet-list">
+                    <li><strong>Développement Fullstack :</strong> Création d'un site associatif avec réservations en ligne, d'une plateforme e-commerce complète, et d'un jeu narratif interactif en Java[span_5](start_span)[span_5](end_span).</li>
+                </ul>
+
             </div>
         </div>
+
+        <footer>
+            <span>📍 Paris, Île-de-France (13e)</span>
+            <span>✉️ <a href="mailto:ascenziodeestevelucie@gmail.com">ascenziodeestevelucie@gmail.com</a></span>
+            <span>🔗 <a href="https://github.com/ASCENZIODEESTEVELucie" target="_blank">github.com/ASCENZIODEESTEVELucie</a></span>
+        </footer>
     </div>
 </body>
 </html>
