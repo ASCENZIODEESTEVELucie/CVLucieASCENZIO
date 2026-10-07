@@ -13,8 +13,10 @@
     
     <style>
         :root {
-            --primary-color: #7CB342; /* Vert pomme élégant */
-            --primary-dark: #689f38;
+            /* Verts plus clairs et lumineux */
+            --primary-color: #8BC34A; 
+            --primary-dark: #7CB342;
+            --primary-light: #AED581;
             --text-color: #333;
             --bg-color: #eef2f3;
             --white: #ffffff;
@@ -42,11 +44,12 @@
         
         .header {
             width: 100%;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            /* Dégradé de vert clair vers vert pomme */
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
             color: var(--white);
             padding: 40px;
             text-align: center;
-            border-bottom: 5px solid #558b2f;
+            border-bottom: 5px solid #689f38;
         }
         
         .header h1 {
@@ -54,7 +57,7 @@
             font-size: 2.8em;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
         }
         
         .header h2 {
@@ -62,7 +65,7 @@
             font-weight: 400;
             font-size: 1.5em;
             letter-spacing: 1px;
-            opacity: 0.9;
+            color: #f1f8e9;
         }
         
         .left-column {
@@ -143,11 +146,11 @@
             background: var(--primary-color);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(124, 179, 66, 0.3);
+            box-shadow: 0 4px 6px rgba(139, 195, 74, 0.3);
         }
         
-        /* Style de la carte SIG */
-        #map {
+        /* Styles des cartes SIG */
+        #map-sidebar {
             height: 220px;
             width: 100%;
             border-radius: 8px;
@@ -155,14 +158,26 @@
             border: 2px solid #ddd;
             z-index: 1;
         }
+
+        #map-body {
+            height: 250px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            z-index: 1;
+        }
         
         .footer {
             width: 100%;
-            background: #2c3e50;
+            /* Même dégradé que l'en-tête */
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
             color: var(--white);
             text-align: center;
             padding: 25px;
             font-size: 1em;
+            border-top: 5px solid #689f38;
         }
         
         .footer p {
@@ -170,20 +185,19 @@
         }
         
         .footer a {
-            color: var(--primary-color);
-            text-decoration: none;
+            color: var(--white);
+            text-decoration: underline;
             font-weight: bold;
             transition: color 0.3s ease;
         }
         
         .footer a:hover {
-            color: #aed581;
-            text-decoration: underline;
+            color: #e8f5e9;
         }
         
         .contact-icons i {
             margin-right: 8px;
-            color: var(--primary-color);
+            color: var(--white);
         }
     </style>
 </head>
@@ -225,9 +239,9 @@
         
         <div class="section">
             <h3><i class="fas fa-map-marked-alt"></i> Localisation</h3>
-            <p style="font-size: 0.9em; margin-bottom: 5px;">📍 Basée à Paris 13e - Mobilité IDF</p>
-            <!-- Conteneur de la carte Leaflet -->
-            <div id="map"></div>
+            <p style="font-size: 0.9em; margin-bottom: 5px;">📍 Base : Paris 13e</p>
+            <!-- Conteneur de la petite carte latérale -->
+            <div id="map-sidebar"></div>
         </div>
     </div>
 
@@ -244,6 +258,9 @@
                 <li>Développement d'un Dashboard autour des volumes bâtis parisiens hébergé sur GitHub pour visualiser des indicateurs clés (À partir de l'Open Data).</li>
                 <li>Élaboration et animation d'une formation technique (2h) sur la Data Ingénierie avec mise en place d'un TP via GitHub Actions pour les collègues participants.</li>
             </ul>
+            
+            <!-- Conteneur de la carte principale de l'Urbanisme -->
+            <div id="map-body"></div>
 
             <div class="job-title">Projets Data & DevOps</div>
             <div class="job-date">Projets d'Architecture Récents</div>
@@ -266,28 +283,41 @@
             <i class="fas fa-map-marker-alt"></i> Paris 13e Arrondissement &nbsp;|&nbsp; 
             <i class="fab fa-github"></i> GitHub : <a href="https://github.com/ASCENZIODEESTEVELucie" target="_blank">ASCENZIODEESTEVELucie</a>
         </p>
-        <p style="margin-top: 10px; color: #aed581;"><i>"Orfèvrerie logicielle au service des directions métiers"</i></p>
+        <p style="margin-top: 10px; color: #f1f8e9;"><i>"Orfèvrerie logicielle au service des directions métiers"</i></p>
     </div>
 </div>
 
-<!-- Script d'initialisation de la carte Leaflet -->
+<!-- Script d'initialisation des cartes Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Initialisation de la carte centrée sur Paris 13e
-        var map = L.map('map', {
-            zoomControl: false // Désactive les boutons +/- pour plus d'élégance sur un CV
-        }).setView([48.833, 2.363], 13);
         
-        // Ajout d'un fond de carte "CartoDB Positron" (clair et pro)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
+        // 1. Carte Latérale (Sidebar) - Centrée sur Place d'Italie
+        var mapSidebar = L.map('map-sidebar', {
+            zoomControl: false
+        }).setView([48.8315, 2.3555], 15); 
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OSM',
             maxZoom: 19
-        }).addTo(map);
+        }).addTo(mapSidebar);
 
-        // Ajout d'un marqueur personnalisé
-        var marker = L.marker([48.833, 2.363]).addTo(map);
-        marker.bindPopup("<b>Paris 13e</b><br>Prête à relever de nouveaux défis Data !");
+        var markerItalie = L.marker([48.8315, 2.3555]).addTo(mapSidebar);
+        markerItalie.bindPopup("<b>Métro Place d'Italie</b>").openPopup();
+
+
+        // 2. Carte Principale (Body) - Centrée sur Direction de l'Urbanisme
+        var mapBody = L.map('map-body', {
+            zoomControl: true // On laisse le zoom sur la grande carte
+        }).setView([48.8302, 2.3755], 16); 
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(mapBody);
+
+        var markerUrbanisme = L.marker([48.8302, 2.3755]).addTo(mapBody);
+        markerUrbanisme.bindPopup("<b>Direction de l'Urbanisme</b><br>121 avenue de France").openPopup();
     });
 </script>
 
