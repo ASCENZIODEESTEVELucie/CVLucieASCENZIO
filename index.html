@@ -156,6 +156,16 @@
             margin-bottom: 0;
         }
 
+        /* CARTE OPENSTREETMAP */
+        .map-container {
+            width: 100%;
+            height: 120px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+            border: 1px solid #c9d4ce;
+        }
+
         .job-header {
             display: flex;
             justify-content: space-between;
@@ -211,7 +221,7 @@
             
             <div class="left-column">
                 <h2 class="section-title">PROFIL</h2>
-                <p>Data Engineer spécialisée dans la transformation de besoins métiers en solutions concrètes déployées en production. Apprentie 2 ans au sein de la Direction de l'Urbanisme de la Ville de Paris, j'ai développé une aisance pour la mise en place de divers ETL/ELT. Je combine développement, pilotage de projets transverses et forte culture de la preuve de valeur. Parcours transversal : dev × data/IA × SIG × cybersécurité.</p>
+                <p>Data Engineer spécialisée dans la transformation de besoins métiers en solutions concrètes. Apprentie 2 ans au sein de la Direction de l'Urbanisme de la Ville de Paris, j'ai développé une aisance pour la mise en place de divers ETL/ELT. Je combine développement, pilotage de projets transverses et forte culture de la preuve de concept. Parcours transversal : dev × data/IA × SIG × cybersécurité.</p>
 
                 <div class="section-divider"></div>
 
@@ -220,10 +230,10 @@
                 <p class="sub">DataScientest · 2024 - 2026<br>RNCP38919 - Bac+5</p>
 
                 <h4>POEC - Analyste SOC</h4>
-                <p class="sub">M21 · 2023<br>Sensibilisation, analyse et défense.</p>
+                <p class="sub">M21 · 2023<br>Analyses de logs, de paquets via Wireshark, certification Splunk, simulation d'attaque, OSINT.</p>
 
                 <h4>Conceptrice Dév. App - (RNCP Niv. 6)</h4>
-                <p class="sub">AFPA · 2021 - 2022<br>Développement applicatif et bases de données.</p>
+                <p class="sub">AFPA · 2021 - 2022<br>Développement applicatif (Java) et bases de données.</p>
 
                 <div class="section-divider"></div>
 
@@ -241,6 +251,15 @@
                     <li>Jeux Vidéo × Mangas</li>
                     <li>CIFRE : NLP × Unreal Engine</li>
                 </ul>
+
+                <div class="section-divider"></div>
+                
+                <h2 class="section-title">LOCALISATION</h2>
+                <p style="margin-bottom: 5px;">📍 Paris (13e arrondissement)</p>
+                <!-- CARTE ZOOMÉE -->
+                <div class="map-container">
+                    <iframe width="100%" height="120" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.3510%2C48.8295%2C2.3575%2C48.8335&amp;layer=mapnik&amp;marker=48.8315%2C2.3543"></iframe>
+                </div>
             </div>
 
             <div class="right-column">
@@ -253,7 +272,7 @@
                     </div>
                     <div class="skills-category">
                         <h5>📊 Data & Cloud</h5>
-                        <p>GCP Cloud Storage · Parquet<br>IndexedDB · PostgreSQL<br>ETL/ELT · Machine Learning</p>
+                        <p>GCP Cloud Storage · Parquet<br>IndexedDB · PostgreSQL · NeonDB<br>ETL/ELT · Machine Learning</p>
                     </div>
                     <div class="skills-category">
                         <h5>🗺️ SIG & Legacy</h5>
@@ -276,17 +295,16 @@
                 <div class="tinted-box" style="padding-bottom: 5px;">
                     <p style="font-weight: 600; margin-bottom: 10px; color: var(--accent-color);">Développements récents en production :</p>
                     <ul class="bullet-list">
-                        <li><strong>Optimisation des traitements SIG (Protégé à l'INPI) :</strong> Développement d'un script Python/ArcPy qui a réduit le temps de traitement des données spatiales de plus de 2 heures à moins de 2 minutes pour les agents de la ville.</li>
-                        <li><strong>Dashboard-VB :</strong> Création d'un tableau de bord interactif hébergé sur GitHub Pages pour la visualisation des données parcellaires extraites d'Oracle SDE.</li>
+                        <li><strong>Optimisation des traitements SIG :</strong> Développement d'un script Python/ArcPy qui a réduit le temps de traitement des données spatiales de plus de 2 heures à moins de 2 minutes pour les agents de la ville.</li>
+                        <li><strong>Dashboard-VB :</strong> Création d'un tableau de bord interactif hébergé sur GitHub Pages pour la visualisation d'indicateurs extraits de l'Open Data Paris.</li>
                         <li><strong>Application Web d'archivage (.eml) :</strong> Développement d'une interface client (JavaScript Vanilla, IndexedDB) permettant de lire et d'organiser localement des archives d'emails depuis le navigateur.</li>
                     </ul>
                 </div>
                 
                 <ul class="bullet-list" style="margin-bottom: 25px;">
-                    <li><strong>Formation technique interne :</strong> Conception et animation d'une session de 2 heures sur l'ingénierie logicielle et GitHub pour la direction et les collègues.</li>
-                    <li><strong>ETL/Dashboard Parc Informatique :</strong> Automatisation de la collecte des données matérielles avec un agent distribué et création d'un tableau de bord en JavaScript sans framework[span_0](start_span)[span_0](end_span).</li>
-                    <li><strong>Pipeline hybride & Traitement 3D :</strong> Mise en place d'une architecture sécurisée traçant les mises à jour en base de données[span_1](start_span)[span_1](end_span), et outil Python automatisant l'extraction de nuages de points (LIDAR)[span_2](start_span)[span_2](end_span).</li>
-                    <li><strong>Monitoring Serveur :</strong> Mise en place d'une surveillance automatisée (C# .NET) pour détecter et intégrer rapidement les nouveaux fichiers de plans en base[span_3](start_span)[span_3](end_span).</li>
+                    <li><strong>Formation technique interne :</strong> Conception et animation d'une session de 2 heures sur la Datavisualisation avec TP hébergé sur Github afin de faire manipuler les collègues.</li>
+                    <li><strong>ETL/Dashboard Parc Informatique :</strong> Automatisation de la collecte des données matérielles avec un script distribué et création d'un tableau de bord en JavaScript sans framework[span_0](start_span)[span_0](end_span).</li>
+                    <li><strong>Alerting autour du changement d'état d'un objet volume bâtis :</strong> Mise en place d'une surveillance automatisée en powershell pour détecter et intégrer les volumes bâtis parisiens plus facilement (Listing pour passage de l'objet DAO dans FME)[span_3](start_span)[span_3](end_span).</li>
                 </ul>
 
                 <div class="job-header">
@@ -294,7 +312,7 @@
                     <span class="date">2025 - 2026</span>
                 </div>
                 <ul class="bullet-list" style="margin-bottom: 25px;">
-                    <li><strong>Pipeline Data (Ilovescrapy) :</strong> Conception d'une architecture Medallion complète ingérant des données de trafic aérien (APIs ADSB.lol et OpenSky). Stockage optimisé (fichiers Parquet sur GCP) et implémentation d'un modèle d'Intelligence Artificielle pour la prédiction des retards de vols.</li>
+                    <li><strong>Pipeline Data (Ilovescrapy) :</strong> Conception d'une architecture Medallion complète ingérant des données de trafic aérien (APIs ADSB.lol et OpenSky). Stockage optimisé (fichiers Parquet sur GCP) et implémentation d'un modèle de machine Learning pour la prédiction des retards de vols.</li>
                 </ul>
 
                 <div class="job-header">
@@ -302,7 +320,7 @@
                     <span class="date">2023</span>
                 </div>
                 <ul class="bullet-list" style="margin-bottom: 25px;">
-                    <li><strong>ProjetCyber :</strong> Réalisation d'une simulation d'attaque, détection réseau et rédaction d'un rapport d'incident complet[span_4](start_span)[span_4](end_span).</li>
+                    <li><strong>ProjetCyber :</strong> Mise en place de VM, Réalisation d'une simulation d'attaque, détection réseau et rédaction d'un rapport d'incident complet[span_4](start_span)[span_4](end_span).</li>
                 </ul>
 
                 <div class="job-header">
@@ -310,7 +328,7 @@
                     <span class="date">2021 - 2022</span>
                 </div>
                 <ul class="bullet-list">
-                    <li><strong>Développement Fullstack :</strong> Création d'un site associatif avec réservations en ligne, d'une plateforme e-commerce complète, et d'un jeu narratif interactif en Java[span_5](start_span)[span_5](end_span).</li>
+                    <li><strong>Développement Fullstack :</strong> Création d'un site associatif avec réservations d'activités en ligne, d'une plateforme e-commerce complète, et maquette d'un jeu narratif interactif en Java[span_5](start_span)[span_5](end_span).</li>
                 </ul>
 
             </div>
